@@ -3,27 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Servidor de Juegos</title>
+    <title>L2MultricraftX - Remastered Experience</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>NOMBRE DEL SERVER</h1>
-        <p>¡Únete a la mejor comunidad!</p>
-        <button onclick="copiarIP()" id="ip-button">CLICK PARA COPIAR IP</button>
+
+    <nav class="navbar">
+        <div class="logo">L2MULTRICRAFT<span>X</span></div>
+        <ul>
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#features">Características</a></li>
+            <li><a href="#connect">Conectar</a></li>
+            <li><a href="https://discord.gg/tu-link" class="btn-discord">Discord</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>L2MULTICRAFTX</h1>
+            <p>Crónica Interlude - Rates x50 - Comienza tu leyenda</p>
+            <div class="status-box">
+                <span class="status-dot"></span> SERVER ONLINE: 1240 Jugadores
+            </div>
+            <button class="cta-button" onclick="copiarIP()">COPIAR IP LOGIN</button>
+        </div>
     </header>
 
-    <section id="features">
-        <div class="card">⭐ 0 Lag</div>
-        <div class="card">⚔️ PvP Activado</div>
-        <div class="card">💎 Economía Real</div>
+    <section id="features" class="section">
+        <h2 class="title">¿POR QUÉ ELEGIRNOS?</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>⚔️ PvP Balanceado</h3>
+                <p>Clases revisadas para asegurar una experiencia competitiva justa.</p>
+            </div>
+            <div class="card">
+                <h3>🛡️ Sin Pay-to-Win</h3>
+                <p>Tienda limitada a cosméticos y consumibles básicos. Todo se consigue jugando.</p>
+            </div>
+            <div class="card">
+                <h3>🏰 Asedios Épicos</h3>
+                <p>Eventos semanales con premios únicos para los clanes dominantes.</p>
+            </div>
+        </div>
     </section>
+
+    <section id="connect" class="section dark">
+        <h2 class="title">CÓMO CONECTAR</h2>
+        <div class="steps">
+            <p>1. Descarga nuestro Cliente Interlude.</p>
+            <p>2. Descarga el Parche L2MultricraftX.</p>
+            <p>3. Crea tu cuenta automáticamente al loguear.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 L2MultricraftX - Todos los derechos reservados.</p>
+    </footer>
 
     <script>
         function copiarIP() {
-            const ip = "play.tuservidor.com"; // CAMBIA ESTO
+            const ip = "login.l2multicraftx.com";
             navigator.clipboard.writeText(ip);
-            alert("¡IP Copiada: " + ip + "!");
+            alert("¡IP del servidor copiada!");
         }
     </script>
 </body>
