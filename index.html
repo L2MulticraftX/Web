@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Servidor de Juegos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>NOMBRE DEL SERVER</h1>
+        <p>¡Únete a la mejor comunidad!</p>
+        <button onclick="copiarIP()" id="ip-button">CLICK PARA COPIAR IP</button>
+    </header>
+
+    <section id="features">
+        <div class="card">⭐ 0 Lag</div>
+        <div class="card">⚔️ PvP Activado</div>
+        <div class="card">💎 Economía Real</div>
+    </section>
+
+    <script>
+        function copiarIP() {
+            const ip = "play.tuservidor.com"; // CAMBIA ESTO
+            navigator.clipboard.writeText(ip);
+            alert("¡IP Copiada: " + ip + "!");
+        }
+    </script>
+</body>
+</html>
