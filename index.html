@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L2MulticraftX - L2 Multiskill Server</title>
+    <title>L2Remastered - Premium MMORPG Server</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -453,6 +453,263 @@
             letter-spacing: 2px;
         }
 
+        /* Countdown Styles */
+        .countdown-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary-gold), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 3rem;
+            letter-spacing: 3px;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-gold), #fff, var(--primary-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            min-width: 120px;
+            padding: 1rem;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            background-color: rgba(15, 15, 25, 0.6);
+            backdrop-filter: blur(10px);
+            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.4));
+        }
+
+        .time-label {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 1rem;
+        }
+
+        .time-separator {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            color: var(--primary-gold);
+            font-weight: 900;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+        }
+
+        /* Registration Popup */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .popup-content {
+            background: linear-gradient(135deg, rgba(15, 15, 25, 0.95), rgba(10, 10, 15, 0.95));
+            border: 2px solid var(--primary-gold);
+            border-radius: 15px;
+            padding: 3rem;
+            max-width: 700px;
+            width: 90%;
+            position: relative;
+            animation: slideUp 0.4s ease;
+            box-shadow: 0 20px 80px rgba(212, 175, 55, 0.4);
+            backdrop-filter: blur(20px);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .popup-close:hover {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--primary-gold);
+            transform: rotate(90deg);
+        }
+
+        .popup-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary-gold), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .popup-subtitle {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--primary-gold);
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .popup-description {
+            color: var(--text-dim);
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .steps-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .registration-steps {
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-gold), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            min-width: 50px;
+            text-align: center;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
+        }
+
+        .step-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .step-content p {
+            color: var(--text-dim);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .popup-note {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--primary-gold);
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+        }
+
+        .popup-note strong {
+            color: var(--primary-gold);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .popup-note p {
+            color: var(--text-light);
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .popup-button {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary-gold), #ffd700);
+            color: var(--darker-bg);
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .popup-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.6);
+        }
+
         /* Server Info */
         .server-info {
             padding: 120px 2rem;
@@ -579,6 +836,46 @@
             .stat-number {
                 font-size: 3rem;
             }
+
+            .countdown-title {
+                font-size: 2rem;
+            }
+
+            .time-value {
+                font-size: 3rem;
+                min-width: 80px;
+                padding: 0.5rem;
+            }
+
+            .time-separator {
+                font-size: 2.5rem;
+            }
+
+            .countdown-timer {
+                gap: 1rem;
+            }
+
+            .popup-content {
+                padding: 2rem;
+                width: 95%;
+            }
+
+            .popup-content h2 {
+                font-size: 2rem;
+            }
+
+            .popup-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .step {
+                gap: 1rem;
+            }
+
+            .step-number {
+                font-size: 1.5rem;
+                min-width: 40px;
+            }
         }
 
         /* Scroll animations */
@@ -604,7 +901,7 @@
     <!-- Header -->
     <header id="header">
         <nav>
-            <div class="logo">L2MulticraftX</div>
+            <div class="logo">L2REMASTERED</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
@@ -617,37 +914,43 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>L2MulticraftX</h1>
+            <h1>L2REMASTERED</h1>
             <div class="subtitle">Multiproff Premium Server</div>
             <p class="description">
                 Experience the ultimate Lineage 2 adventure with custom features, balanced gameplay, 
                 and an active community. Join thousands of players in epic battles and legendary quests.
             </p>
             <div class="cta-buttons">
-                <a href="#download" class="btn btn-primary">Start Playing</a>
-                <a href="#info" class="btn btn-secondary">Learn More</a>
+                <a href="#download" class="btn btn-primary">Download Client</a>
+                <button onclick="openRegistrationPopup()" class="btn btn-secondary">Registration</button>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Countdown Section -->
     <section class="stats">
-        <div class="stats-grid">
-            <div class="stat-item scroll-reveal">
-                <div class="stat-number">5000+</div>
-                <div class="stat-label">Active Players</div>
-            </div>
-            <div class="stat-item scroll-reveal">
-                <div class="stat-number">99.9%</div>
-                <div class="stat-label">Uptime</div>
-            </div>
-            <div class="stat-item scroll-reveal">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Support</div>
-            </div>
-            <div class="stat-item scroll-reveal">
-                <div class="stat-number">200+</div>
-                <div class="stat-label">Custom Features</div>
+        <div class="countdown-container">
+            <h2 class="countdown-title">Server Launch Countdown</h2>
+            <div class="countdown-timer" id="countdown">
+                <div class="time-unit">
+                    <div class="time-value" id="days">30</div>
+                    <div class="time-label">Days</div>
+                </div>
+                <div class="time-separator">:</div>
+                <div class="time-unit">
+                    <div class="time-value" id="hours">00</div>
+                    <div class="time-label">Hours</div>
+                </div>
+                <div class="time-separator">:</div>
+                <div class="time-unit">
+                    <div class="time-value" id="minutes">00</div>
+                    <div class="time-label">Minutes</div>
+                </div>
+                <div class="time-separator">:</div>
+                <div class="time-unit">
+                    <div class="time-value" id="seconds">00</div>
+                    <div class="time-label">Seconds</div>
+                </div>
             </div>
         </div>
     </section>
@@ -656,7 +959,7 @@
     <section class="features" id="features">
         <div class="section-title">
             <h2>Server Features</h2>
-            <p>Discover what makes L2MulticraftX the best choice for your gaming experience</p>
+            <p>Discover what makes L2Remastered the best choice for your gaming experience</p>
         </div>
         <div class="features-grid">
             <div class="feature-card scroll-reveal">
@@ -762,12 +1065,133 @@
                 <a href="#" title="Forum">📋</a>
             </div>
             <div class="copyright">
-                © 2026 L2MulticraftX. All rights reserved. | Lineage 2 is a registered trademark of NCSoft.
+                © 2026 L2Remastered. All rights reserved. | Lineage 2 is a registered trademark of NCSoft.
             </div>
         </div>
     </footer>
 
+    <!-- Registration Popup -->
+    <div class="popup-overlay" id="registrationPopup">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closeRegistrationPopup()">&times;</button>
+            <h2>Registration</h2>
+            <p class="popup-subtitle">Automatic registration!</p>
+            <p class="popup-description">
+                We have automatic account registration — no website registration needed!
+            </p>
+            
+            <h3 class="steps-title">How to start playing:</h3>
+            
+            <div class="registration-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Download the game client</h3>
+                        <p>Download and install the game client</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Launch the game</h3>
+                        <p>Open the client and go to the login screen</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Enter login and password</h3>
+                        <p>Create your desired login and password</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Account created!</h3>
+                        <p>If the account doesn't exist — it will be created automatically</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="popup-note">
+                <p><strong>Important:</strong> If the login is already taken — you will see a message and can try another one.</p>
+            </div>
+            
+            <button class="popup-button" onclick="window.location.href='#download'">Download Client</button>
+        </div>
+    </div>
+
     <script>
+        // Registration Popup Functions
+        function openRegistrationPopup() {
+            document.getElementById('registrationPopup').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRegistrationPopup() {
+            document.getElementById('registrationPopup').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close popup when clicking outside
+        document.getElementById('registrationPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRegistrationPopup();
+            }
+        });
+
+        // Close popup with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeRegistrationPopup();
+            }
+        });
+
+        // Countdown Timer - 30 days from now
+        function startCountdown() {
+            // Set the target date to 30 days from now
+            const now = new Date();
+            const targetDate = new Date(now.getTime() + (30 * 24 * 60 * 60 * 1000));
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                // If countdown is finished
+                if (distance < 0) {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    return;
+                }
+
+                // Calculate time units
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display with leading zeros
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            // Update immediately
+            updateCountdown();
+            
+            // Update every second
+            setInterval(updateCountdown, 1000);
+        }
+
+        // Start countdown when page loads
+        startCountdown();
+
         // Header scroll effect
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
