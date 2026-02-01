@@ -3,70 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L2MultricraftX - Remastered Experience</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+    <title>L2MultiCraft - Home</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">L2MULTRICRAFT<span>X</span></div>
-        <ul>
-            <li><a href="#home">Inicio</a></li>
-            <li><a href="#features">Características</a></li>
-            <li><a href="#connect">Conectar</a></li>
-            <li><a href="https://discord.gg/tu-link" class="btn-discord">Discord</a></li>
-        </ul>
-    </nav>
-
-    <header id="home" class="hero">
-        <div class="hero-content">
-            <h1>L2MULTICRAFTX</h1>
-            <p>Crónica Interlude - Rates x50 - Comienza tu leyenda</p>
-            <div class="status-box">
-                <span class="status-dot"></span> SERVER ONLINE: 1240 Jugadores
-            </div>
-            <button class="cta-button" onclick="copiarIP()">COPIAR IP LOGIN</button>
-        </div>
+    <!-- Navbar -->
+    <header id="header">
+        <nav class="navbar">
+            <a href="#home" class="nav-logo">L2MultiCraft</a>
+            <ul class="nav-menu">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#rates">Rates</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
 
+    <!-- Home Hero -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1>Bienvenido a L2MultiCraft</h1>
+            <p>H5 - PvE - Multiskill - Rebirth</p>
+            <a href="#features" class="btn-primary">Descubre Más</a>
+        </div>
+    </section>
+
+    <!-- Features -->
     <section id="features" class="section">
-        <h2 class="title">¿POR QUÉ ELEGIRNOS?</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>⚔️ PvP Balanceado</h3>
-                <p>Clases revisadas para asegurar una experiencia competitiva justa.</p>
+        <h2 class="section-title">Características</h2>
+        <div class="grid-container">
+            <div class="feature-box">
+                <h3>Multiskill</h3>
+                <p>Aprende varias habilidades y define tu estilo único.</p>
             </div>
-            <div class="card">
-                <h3>🛡️ Sin Pay-to-Win</h3>
-                <p>Tienda limitada a cosméticos y consumibles básicos. Todo se consigue jugando.</p>
+            <div class="feature-box">
+                <h3>PvE Intenso</h3>
+                <p>Contenidos PvE optimizados y balanceados para diversión.</p>
             </div>
-            <div class="card">
-                <h3>🏰 Asedios Épicos</h3>
-                <p>Eventos semanales con premios únicos para los clanes dominantes.</p>
+            <div class="feature-box">
+                <h3>Rebirth System</h3>
+                <p>Reinicia y gana estadísticas permanentes.</p>
             </div>
         </div>
     </section>
 
-    <section id="connect" class="section dark">
-        <h2 class="title">CÓMO CONECTAR</h2>
-        <div class="steps">
-            <p>1. Descarga nuestro Cliente Interlude.</p>
-            <p>2. Descarga el Parche L2MultricraftX.</p>
-            <p>3. Crea tu cuenta automáticamente al loguear.</p>
+    <!-- Rates -->
+    <section id="rates" class="section dark-bg">
+        <h2 class="section-title">Rates</h2>
+        <div class="rates-grid">
+            <div class="rate-box">
+                <h3>EXP</h3>
+                <p>x2</p>
+            </div>
+            <div class="rate-box">
+                <h3>SP</h3>
+                <p>x2</p>
+            </div>
+            <div class="rate-box">
+                <h3>Drop</h3>
+                <p>Normal</p>
+            </div>
+            <div class="rate-box">
+                <h3>Spoil</h3>
+                <p>x2</p>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 L2MultricraftX - Todos los derechos reservados.</p>
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Contacto</h2>
+        <p>Únete a nuestro Discord y mantente al día con eventos!</p>
+        <a href="https://discord.com" class="btn-primary">Discord</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 L2MultiCraft. Todos los derechos reservados.</p>
     </footer>
 
-    <script>
-        function copiarIP() {
-            const ip = "login.l2multicraftx.com";
-            navigator.clipboard.writeText(ip);
-            alert("¡IP del servidor copiada!");
-        }
-    </script>
+<script src="js/main.js"></script>
 </body>
 </html>
