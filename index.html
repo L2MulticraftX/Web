@@ -3,88 +3,831 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L2MultiCraft - Home</title>
-    <link rel="stylesheet" href="style.css">
+    <title>L2Remastered - Premium MMORPG Server</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #d4af37;
+            --primary-red: #8b0000;
+            --dark-bg: #0a0a0f;
+            --darker-bg: #050508;
+            --card-bg: rgba(15, 15, 25, 0.8);
+            --accent-blue: #1e90ff;
+            --text-light: #e0e0e0;
+            --text-dim: #888;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(30, 144, 255, 0.1) 0%, transparent 50%),
+                linear-gradient(180deg, #0a0a0f 0%, #050508 100%);
+            overflow: hidden;
+        }
+
+        .bg-animated::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(212, 175, 55, 0.03) 2px, rgba(212, 175, 55, 0.03) 4px);
+            animation: grid-move 20s linear infinite;
+        }
+
+        @keyframes grid-move {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        /* Particle Effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            animation: float-particle 15s infinite ease-in-out;
+            opacity: 0.2;
+        }
+
+        @keyframes float-particle {
+            0%, 100% { 
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% { opacity: 0.2; }
+            90% { opacity: 0.2; }
+            100% { 
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* Header Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-gold), #fff, var(--primary-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            letter-spacing: 3px;
+            animation: glow-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6)); }
+            50% { filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.9)); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--accent-blue));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 120px 2rem 2rem;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: fade-in-up 1s ease-out;
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--primary-gold), var(--accent-blue), #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 80px rgba(212, 175, 55, 0.5);
+            letter-spacing: 5px;
+            animation: gradient-shift 4s ease infinite, title-entrance 1.2s ease-out;
+            line-height: 1.2;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes title-entrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .hero .subtitle {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+            margin-bottom: 2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: fade-in-up 1s ease-out 0.3s backwards;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            animation: fade-in-up 1s ease-out 0.5s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fade-in-up 1s ease-out 0.7s backwards;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-gold), #ffd700);
+            color: var(--darker-bg);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-gold);
+            border: 2px solid var(--primary-gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-gold);
+            color: var(--darker-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 2rem;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-gold), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-gold);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+        }
+
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .feature-card p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 100px 2rem;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.2), rgba(30, 144, 255, 0.2));
+            border-top: 2px solid rgba(212, 175, 55, 0.3);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-gold), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+        }
+
+        .stat-label {
+            font-size: 1.3rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Server Info */
+        .server-info {
+            padding: 120px 2rem;
+        }
+
+        .info-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .info-box {
+            background: var(--card-bg);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .info-box:hover {
+            border-color: var(--primary-gold);
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .info-box h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--text-dim);
+        }
+
+        .info-value {
+            color: var(--primary-gold);
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            border-top: 2px solid rgba(212, 175, 55, 0.3);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-gold);
+            transform: translateY(-5px);
+            filter: drop-shadow(0 5px 15px rgba(212, 175, 55, 0.6));
+        }
+
+        .copyright {
+            color: var(--text-dim);
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid,
+            .info-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="bg-animated"></div>
+    
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
 
-    <!-- Navbar -->
+    <!-- Header -->
     <header id="header">
-        <nav class="navbar">
-            <a href="#home" class="nav-logo">L2MultiCraft</a>
-            <ul class="nav-menu">
-                <li><a href="#home">Inicio</a></li>
+        <nav>
+            <div class="logo">L2REMASTERED</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#rates">Rates</a></li>
-                <li><a href="#contact">Contacto</a></li>
+                <li><a href="#info">Server Info</a></li>
+                <li><a href="#download">Download</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Home Hero -->
-    <section id="home" class="hero-section">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Bienvenido a L2MultiCraft</h1>
-            <p>H5 - PvE - Multiskill - Rebirth</p>
-            <a href="#features" class="btn-primary">Descubre Más</a>
-        </div>
-    </section>
-
-    <!-- Features -->
-    <section id="features" class="section">
-        <h2 class="section-title">Características</h2>
-        <div class="grid-container">
-            <div class="feature-box">
-                <h3>Multiskill</h3>
-                <p>Aprende varias habilidades y define tu estilo único.</p>
-            </div>
-            <div class="feature-box">
-                <h3>PvE Intenso</h3>
-                <p>Contenidos PvE optimizados y balanceados para diversión.</p>
-            </div>
-            <div class="feature-box">
-                <h3>Rebirth System</h3>
-                <p>Reinicia y gana estadísticas permanentes.</p>
+            <h1>L2REMASTERED</h1>
+            <div class="subtitle">Multiproff Premium Server</div>
+            <p class="description">
+                Experience the ultimate Lineage 2 adventure with custom features, balanced gameplay, 
+                and an active community. Join thousands of players in epic battles and legendary quests.
+            </p>
+            <div class="cta-buttons">
+                <a href="#download" class="btn btn-primary">Start Playing</a>
+                <a href="#info" class="btn btn-secondary">Learn More</a>
             </div>
         </div>
     </section>
 
-    <!-- Rates -->
-    <section id="rates" class="section dark-bg">
-        <h2 class="section-title">Rates</h2>
-        <div class="rates-grid">
-            <div class="rate-box">
-                <h3>EXP</h3>
-                <p>x2</p>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item scroll-reveal">
+                <div class="stat-number">5000+</div>
+                <div class="stat-label">Active Players</div>
             </div>
-            <div class="rate-box">
-                <h3>SP</h3>
-                <p>x2</p>
+            <div class="stat-item scroll-reveal">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Uptime</div>
             </div>
-            <div class="rate-box">
-                <h3>Drop</h3>
-                <p>Normal</p>
+            <div class="stat-item scroll-reveal">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Support</div>
             </div>
-            <div class="rate-box">
-                <h3>Spoil</h3>
-                <p>x2</p>
+            <div class="stat-item scroll-reveal">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Custom Features</div>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section">
-        <h2 class="section-title">Contacto</h2>
-        <p>Únete a nuestro Discord y mantente al día con eventos!</p>
-        <a href="https://discord.com" class="btn-primary">Discord</a>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-title">
+            <h2>Server Features</h2>
+            <p>Discover what makes L2Remastered the best choice for your gaming experience</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card scroll-reveal">
+                <div class="feature-icon">⚔️</div>
+                <h3>Balanced PvP</h3>
+                <p>Custom balanced classes and skills for fair and competitive player versus player combat. Every class has its role and importance.</p>
+            </div>
+            <div class="feature-card scroll-reveal">
+                <div class="feature-icon">🏰</div>
+                <h3>Epic Sieges</h3>
+                <p>Massive castle sieges with hundreds of players fighting for territorial control and valuable resources.</p>
+            </div>
+            <div class="feature-card scroll-reveal">
+                <div class="feature-icon">🎁</div>
+                <h3>Custom Events</h3>
+                <p>Daily automated events, weekly tournaments, and special seasonal events with exclusive rewards.</p>
+            </div>
+            <div class="feature-card scroll-reveal">
+                <div class="feature-icon">💎</div>
+                <h3>Unique Items</h3>
+                <p>Custom weapon and armor sets, enhanced augmentation system, and rare collectible items.</p>
+            </div>
+            <div class="feature-card scroll-reveal">
+                <div class="feature-icon">🛡️</div>
+                <h3>Anti-Bot System</h3>
+                <p>Advanced protection against bots and cheaters to ensure fair play for all community members.</p>
+            </div>
+            <div class="feature-card scroll-reveal">
+                <div class="feature-icon">🌟</div>
+                <h3>Active GMs</h3>
+                <p>Dedicated game masters available 24/7 to assist players and organize special in-game activities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Server Info Section -->
+    <section class="server-info" id="info">
+        <div class="section-title">
+            <h2>Server Information</h2>
+            <p>Everything you need to know about our server specifications</p>
+        </div>
+        <div class="info-container">
+            <div class="info-box scroll-reveal">
+                <h3>Server Rates</h3>
+                <ul class="info-list">
+                    <li>
+                        <span class="info-label">Experience</span>
+                        <span class="info-value">x75</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Skill Points</span>
+                        <span class="info-value">x75</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Adena</span>
+                        <span class="info-value">x50</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Drop</span>
+                        <span class="info-value">x10</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Spoil</span>
+                        <span class="info-value">x10</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="info-box scroll-reveal">
+                <h3>Server Details</h3>
+                <ul class="info-list">
+                    <li>
+                        <span class="info-label">Chronicle</span>
+                        <span class="info-value">Interlude</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Max Level</span>
+                        <span class="info-value">80</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Enchant Safe</span>
+                        <span class="info-value">+3</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Max Enchant</span>
+                        <span class="info-value">+16</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Subclass</span>
+                        <span class="info-value">3 Classes</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <p>© 2026 L2MultiCraft. Todos los derechos reservados.</p>
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" title="Discord">💬</a>
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="YouTube">▶️</a>
+                <a href="#" title="Forum">📋</a>
+            </div>
+            <div class="copyright">
+                © 2026 L2Remastered. All rights reserved. | Lineage 2 is a registered trademark of NCSoft.
+            </div>
+        </div>
     </footer>
 
-<script src="main.js"></script>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Particle generation
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 3 + 1 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-
